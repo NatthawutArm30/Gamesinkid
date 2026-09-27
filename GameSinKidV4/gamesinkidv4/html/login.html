@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSinkid | เข้าสู่ระบบ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+
+<header class="navbar">
+    <a href="index.html" class="brand">
+        <span class="brand-icon">G</span>
+        <span>Game<span>Sinkid</span></span>
+    </a>
+
+    <div class="nav-actions">
+        <a href="register.html" class="btn btn-primary">สมัครสมาชิก</a>
+    </div>
+</header>
+
+<main class="login-layout">
+    <section class="auth-card login-card">
+        <div class="auth-title center">
+            <span class="auth-logo">G</span>
+
+            <div>
+                <small>WELCOME BACK</small>
+                <h2>เข้าสู่ระบบ</h2>
+            </div>
+        </div>
+
+        <p class="auth-description">
+            เข้าสู่ระบบเพื่อดูเกมทั้งหมด
+            และจัดการเกมที่คุณฝากไว้
+        </p>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginUser">
+                    ชื่อผู้ใช้หรืออีเมล
+                </label>
+
+                <input
+                    id="loginUser"
+                    type="text"
+                    placeholder="Username หรือ Email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="loginPassword">
+                    รหัสผ่าน
+                </label>
+
+                <input
+                    id="loginPassword"
+                    type="password"
+                    placeholder="Password"
+                    required
+                >
+            </div>
+
+            <div class="login-options">
+                <label class="check-row">
+                    <input type="checkbox">
+                    <span>จดจำฉัน</span>
+                </label>
+
+                <a href="#" id="forgotPassword">
+                    ลืมรหัสผ่าน?
+                </a>
+            </div>
+
+            <button type="submit" class="auth-submit">
+                เข้าสู่ระบบ
+                <span>→</span>
+            </button>
+        </form>
+
+        <p class="auth-switch">
+            ยังไม่มีบัญชี?
+            <a href="register.html">สมัครสมาชิก</a>
+        </p>
+    </section>
+</main>
+
+<script src="script.js?v=2"></script>
+</body>
+</html>

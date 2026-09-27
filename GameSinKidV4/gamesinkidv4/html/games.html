@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSinkid | เกมทั้งหมด</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="brand">
+        <span class="brand-icon">G</span>
+        <span>Game<span>Sinkid</span></span>
+    </a>
+
+    <nav class="nav-links">
+        <a href="index.html">หน้าแรก</a>
+        <a href="games.html" class="active">เกมทั้งหมด</a>
+        <a href="index.html#about">เกี่ยวกับเรา</a>
+        <a href="index.html#how-it-works">วิธีใช้งาน</a>
+    </nav>
+
+    <div class="nav-actions" id="navActions"></div>
+</header>
+
+<main class="games-page">
+    <section class="page-header">
+        <div>
+            <span class="eyebrow">EXPLORE GAMES</span>
+            <h1>ค้นพบเกมใหม่ ๆ</h1>
+            <p>รวมผลงานเกมที่นักพัฒนาฝากไว้บน GameSinkid</p>
+        </div>
+
+        <a href="upload.html" class="btn btn-primary">
+            + ฝากเกม
+        </a>
+    </section>
+
+    <section class="game-toolbar">
+        <div class="search-input">
+            <span>⌕</span>
+            <input
+                type="text"
+                id="gameSearch"
+                placeholder="ค้นหาเกม..."
+            >
+        </div>
+
+        <div class="filter-list">
+            <button class="filter active" data-category="all">
+                ทั้งหมด
+            </button>
+            <button class="filter" data-category="Action">
+                Action
+            </button>
+            <button class="filter" data-category="Adventure">
+                Adventure
+            </button>
+            <button class="filter" data-category="RPG">
+                RPG
+            </button>
+            <button class="filter" data-category="Horror">
+                Horror
+            </button>
+        </div>
+    </section>
+
+    <section class="game-grid" id="gameGrid"></section>
+
+    <div class="empty-state" id="emptyState">
+        <div>⌕</div>
+        <h3>ไม่พบเกม</h3>
+        <p>ลองเปลี่ยนคำค้นหาหรือหมวดหมู่</p>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="footer-brand">
+        <span class="brand-icon">G</span>
+        <strong>GameSinkid</strong>
+    </div>
+
+    <p>Publish your game. Share your creativity.</p>
+    <span class="copyright">© 2026 GameSinkid. All rights reserved.</span>
+</footer>
+
+<script src="script.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSinkid | รายละเอียดเกม</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="brand">
+        <span class="brand-icon">G</span>
+        <span>Game<span>Sinkid</span></span>
+    </a>
+
+    <nav class="nav-links">
+        <a href="index.html">หน้าแรก</a>
+        <a href="games.html" class="active">เกมทั้งหมด</a>
+        <a href="index.html#about">เกี่ยวกับเรา</a>
+    </nav>
+
+    <div class="nav-actions" id="navActions"></div>
+</header>
+
+<main class="detail-page">
+    <a href="games.html" class="back-link">← กลับไปเกมทั้งหมด</a>
+
+    <section class="detail-hero">
+        <div class="detail-cover cover-purple" id="detailCover">
+            GAME
+        </div>
+
+        <div class="detail-info">
+            <span class="game-tag" id="detailCategory">RPG</span>
+
+            <h1 id="detailName">Shadow Realm</h1>
+
+            <p class="detail-description" id="detailDescription">
+                ผจญภัยในโลกแห่งความมืดและค้นหาความลับที่ซ่อนอยู่
+            </p>
+
+            <div class="developer">
+                <span class="developer-avatar">D</span>
+                <div>
+                    <small>DEVELOPER</small>
+                    <strong id="detailDeveloper">DarkStudio</strong>
+                </div>
+            </div>
+
+            <div class="detail-actions">
+                <button
+                    class="btn btn-primary"
+                    id="openGameButton"
+                >
+                    เปิดลิงก์เกม
+                    <span>↗</span>
+                </button>
+
+                <a href="games.html" class="btn btn-outline">
+                    เกมอื่น ๆ
+                </a>
+
+                <button class="btn btn-outline favorite-btn" id="favoriteButton">☆ เพิ่มรายการโปรด</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="detail-content">
+        <div>
+            <span class="eyebrow">ABOUT THIS GAME</span>
+            <h2>รายละเอียดเกม</h2>
+
+            <p id="longDescription">
+                เกมนี้เป็นผลงานที่นักพัฒนานำมาฝากไว้บน GameSinkid
+                ผู้ใช้งานสามารถดูข้อมูลเกมและกดเปิดลิงก์
+                เพื่อไปยังแพลตฟอร์มภายนอกที่เจ้าของเกมกำหนด
+            </p>
+        </div>
+
+        <aside class="detail-side">
+            <div>
+                <small>หมวดหมู่</small>
+                <strong id="sideCategory">RPG</strong>
+            </div>
+
+            <div>
+                <small>ผู้พัฒนา</small>
+                <strong id="sideDeveloper">DarkStudio</strong>
+            </div>
+
+            <div>
+                <small>แพลตฟอร์ม</small>
+                <strong>External Link</strong>
+            </div>
+        </aside>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-brand">
+        <span class="brand-icon">G</span>
+        <strong>GameSinkid</strong>
+    </div>
+
+    <p>Publish your game. Share your creativity.</p>
+    <span class="copyright">© 2026 GameSinkid. All rights reserved.</span>
+</footer>
+
+<script src="script.js?v=2"></script>
+</body>
+</html>

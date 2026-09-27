@@ -1,0 +1,8 @@
+{
+  "name": "gamesinkid-mid",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npm start --prefix gamesinkidv4",
+    "dev": "npm run dev --prefix gamesinkidv4"
+  }
+}

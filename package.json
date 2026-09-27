@@ -1,0 +1,9 @@
+{
+  "name": "gamesinkid-root",
+  "version": "1.0.0",
+  "description": "GameSinKid Workspace Root",
+  "scripts": {
+    "start": "npm start --prefix GameSinKidV4/gamesinkidv4",
+    "dev": "npm run dev --prefix GameSinKidV4/gamesinkidv4"
+  }
+}

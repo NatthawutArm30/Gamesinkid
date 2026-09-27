@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSinkid | ฝากเกม</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="brand">
+        <span class="brand-icon">G</span>
+        <span>Game<span>Sinkid</span></span>
+    </a>
+
+    <nav class="nav-links">
+        <a href="index.html">หน้าแรก</a>
+        <a href="games.html">เกมทั้งหมด</a>
+        <a href="upload.html" class="active">ฝากเกม</a>
+    </nav>
+
+    <div class="nav-actions" id="navActions"></div>
+</header>
+
+<main class="upload-page">
+    <section class="page-header upload-header">
+        <div>
+            <span class="eyebrow">DEVELOPER AREA</span>
+            <h1>ฝากเกมของคุณ</h1>
+            <p>
+                ส่งข้อมูลเกมเพื่อขออนุมัติเผยแพร่ผลงานบน GameSinkid (เกมจะขึ้นสู่หน้าเว็บหลังจาก Admin ตรวจสอบและอนุมัติ)
+            </p>
+        </div>
+    </section>
+
+    <div class="upload-approval-notice">
+        <span class="notice-icon">🛡️</span>
+        <div>
+            <strong>ขั้นตอนการอนุมัติเกม:</strong>
+            <p>เมื่อคุณกรอกข้อมูลและกดส่ง เกมจะถูกส่งไปยัง <strong>ผู้ดูแลระบบ (Admin)</strong> เพื่อตรวจสอบความถูกต้อง หลังจาก Admin กดอนุมัติแล้ว เกมจะปรากฏในหน้าเกมทั้งหมดให้ทุกคนเข้าถึงได้ทันที</p>
+        </div>
+    </div>
+
+    <form id="uploadForm" class="upload-layout">
+        <section class="upload-panel">
+            <div class="panel-title">
+                <span>01</span>
+                <div>
+                    <h2>ข้อมูลเกม</h2>
+                    <p>กรอกข้อมูลพื้นฐานของเกม</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="gameName">ชื่อเกม</label>
+                <input
+                    id="gameName"
+                    type="text"
+                    placeholder="เช่น My Adventure Game"
+                    required
+                >
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="gameCategory">หมวดหมู่</label>
+
+                    <select id="gameCategory" required>
+                        <option value="">เลือกหมวดหมู่</option>
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="gameLink">ลิงก์เกม</label>
+                    <input
+                        id="gameLink"
+                        type="url"
+                        placeholder="https://..."
+                        required
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="gameDescription">
+                    คำอธิบายเกม
+                </label>
+
+                <textarea
+                    id="gameDescription"
+                    rows="7"
+                    placeholder="อธิบายเกี่ยวกับเกมของคุณ..."
+                    required
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="gameTags">Tags</label>
+
+                <input
+                    id="gameTags"
+                    type="text"
+                    placeholder="RPG, Adventure, Indie"
+                >
+            </div>
+        </section>
+
+        <section class="upload-panel">
+            <div class="panel-title">
+                <span>02</span>
+                <div>
+                    <h2>รูปภาพเกม</h2>
+                    <p>เพิ่มรูปภาพสำหรับแสดงบนหน้าเกม</p>
+                </div>
+            </div>
+
+            <label class="drop-zone">
+                <div class="drop-icon">↑</div>
+
+                <strong>อัปโหลดรูปปกเกม</strong>
+                <span>PNG, JPG หรือ WEBP</span>
+
+                <input
+                    id="gameImage"
+                    type="file"
+                    accept="image/*"
+                >
+            </label>
+
+            <p class="file-name" id="fileName">
+                ยังไม่ได้เลือกไฟล์
+            </p>
+
+            <div class="form-group">
+                <label for="screenshotLink">
+                    ลิงก์ภาพตัวอย่างเกม
+                </label>
+
+                <input
+                    id="screenshotLink"
+                    type="url"
+                    placeholder="https://..."
+                >
+            </div>
+        </section>
+
+        <div class="upload-actions">
+            <button
+                type="button"
+                class="btn btn-outline"
+                id="draftButton"
+            >
+                บันทึกฉบับร่าง
+            </button>
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+                id="submitGameBtn"
+            >
+                ส่งเกมเพื่อรอ Admin อนุมัติ
+                <span>→</span>
+            </button>
+        </div>
+    </form>
+</main>
+
+<script src="script.js?v=3"></script>
+</body>
+</html>

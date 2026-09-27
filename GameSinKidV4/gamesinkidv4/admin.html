@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSinkid | แดชบอร์ดผู้ดูแลระบบ (Admin)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+
+<header class="navbar">
+    <a href="index.html" class="brand">
+        <span class="brand-icon">G</span>
+        <span>Game<span>Sinkid</span></span>
+    </a>
+
+    <nav class="nav-links">
+        <a href="index.html">หน้าแรก</a>
+        <a href="games.html">เกมทั้งหมด</a>
+        <a href="admin.html" class="active admin-nav-link">🛡️ แอดมิน</a>
+    </nav>
+
+    <div class="nav-actions" id="navActions"></div>
+</header>
+
+<main class="admin-page" id="adminPage">
+    <!-- Non-admin fallback / Loading State -->
+    <div class="admin-loading" id="adminAuthLoading">
+        <div class="loading-spinner"></div>
+        <h2>กำลังตรวจสอบสิทธิ์ Admin...</h2>
+        <p>กรุณารอสักครู่</p>
+    </div>
+
+    <!-- Main Admin Content (shown after auth verified) -->
+    <div id="adminContent" style="display: none;">
+        <!-- Header Banner -->
+        <section class="admin-hero">
+            <div class="admin-hero-info">
+                <span class="admin-badge-pill">🛡️ MASTER ADMIN CONSOLE</span>
+                <h1>ระบบจัดการและอนุมัติเกม</h1>
+                <p>ตรวจสอบผลงานเกมจาก Developer อนุมัติการเผยแพร่ หรือลบเกมออกจากระบบ GameSinkid</p>
+            </div>
+            <div class="admin-hero-actions">
+                <button class="btn btn-outline" id="btnRefreshData">
+                    🔄 รีเฟรชข้อมูล
+                </button>
+                <a href="upload.html" class="btn btn-primary">
+                    + ฝากเกมใหม่
+                </a>
+            </div>
+        </section>
+
+        <!-- KPI Metrics Grid -->
+        <section class="admin-kpi-grid">
+            <div class="kpi-card" id="kpiTotalGames">
+                <div class="kpi-icon icon-blue">🎮</div>
+                <div class="kpi-details">
+                    <span class="kpi-label">เกมทั้งหมด</span>
+                    <strong class="kpi-value" id="valTotalGames">0</strong>
+                    <small>ในฐานข้อมูล</small>
+                </div>
+            </div>
+
+            <div class="kpi-card highlight-pending" id="kpiPendingGames" title="คลิกเพื่อกรองเฉพาะเกมรออนุมัติ">
+                <div class="kpi-icon icon-amber">⏳</div>
+                <div class="kpi-details">
+                    <span class="kpi-label">รอการอนุมัติ</span>
+                    <strong class="kpi-value" id="valPendingGames">0</strong>
+                    <small class="kpi-alert-text">ต้องตรวจสอบ</small>
+                </div>
+            </div>
+
+            <div class="kpi-card" id="kpiPublishedGames">
+                <div class="kpi-icon icon-green">✅</div>
+                <div class="kpi-details">
+                    <span class="kpi-label">เผยแพร่แล้ว</span>
+                    <strong class="kpi-value" id="valPublishedGames">0</strong>
+                    <small>แสดงบนหน้าเว็บ</small>
+                </div>
+            </div>
+
+            <div class="kpi-card" id="kpiRejectedGames">
+                <div class="kpi-icon icon-rose">❌</div>
+                <div class="kpi-details">
+                    <span class="kpi-label">ปฏิเสธแล้ว</span>
+                    <strong class="kpi-value" id="valRejectedGames">0</strong>
+                    <small>ไม่อนุมัติ</small>
+                </div>
+            </div>
+
+            <div class="kpi-card" id="kpiTotalDevs">
+                <div class="kpi-icon icon-purple">🧑‍💻</div>
+                <div class="kpi-details">
+                    <span class="kpi-label">Developer</span>
+                    <strong class="kpi-value" id="valTotalDevs">0</strong>
+                    <small>ผู้สร้างเกม</small>
+                </div>
+            </div>
+
+            <div class="kpi-card" id="kpiTotalViews">
+                <div class="kpi-icon icon-cyan">👁️</div>
+                <div class="kpi-details">
+                    <span class="kpi-label">ยอดเข้าชมรวม</span>
+                    <strong class="kpi-value" id="valTotalViews">0</strong>
+                    <small>Total Views</small>
+                </div>
+            </div>
+
+            <div class="kpi-card" id="kpiTotalClicks">
+                <div class="kpi-icon icon-orange">🔗</div>
+                <div class="kpi-details">
+                    <span class="kpi-label">ยอดคลิกเกมรวม</span>
+                    <strong class="kpi-value" id="valTotalClicks">0</strong>
+                    <small>Total Clicks</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Sub-Tabs -->
+        <section class="admin-section-nav">
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="games">
+                    🎮 จัดการและอนุมัติเกม (<span id="tabGamesCount">0</span>)
+                </button>
+                <button class="admin-tab" data-tab="users">
+                    👥 รายชื่อผู้ใช้และ Developer (<span id="tabUsersCount">0</span>)
+                </button>
+            </div>
+        </section>
+
+        <!-- Tab 1: Games Management View -->
+        <section class="admin-tab-pane active" id="paneGames">
+            <!-- Filter & Search Toolbar -->
+            <div class="admin-toolbar">
+                <div class="search-input admin-search">
+                    <span>⌕</span>
+                    <input type="text" id="adminGameSearch" placeholder="ค้นหาชื่อเกม, ชื่อ Developer, หมวดหมู่...">
+                </div>
+
+                <div class="admin-filter-group">
+                    <div class="status-filter-pills">
+                        <button class="status-pill active" data-status="all">ทั้งหมด</button>
+                        <button class="status-pill pill-pending" data-status="pending_review">
+                            ⏳ รออนุมัติ <span class="badge" id="badgePendingCount">0</span>
+                        </button>
+                        <button class="status-pill pill-published" data-status="published">
+                            ✅ เผยแพร่แล้ว <span class="badge" id="badgePublishedCount">0</span>
+                        </button>
+                        <button class="status-pill pill-rejected" data-status="rejected">
+                            ❌ ปฏิเสธ <span class="badge" id="badgeRejectedCount">0</span>
+                        </button>
+                    </div>
+
+                    <select id="adminCategoryFilter" class="admin-select">
+                        <option value="all">ทุกหมวดหมู่</option>
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Games Management List / Table -->
+            <div class="admin-games-container" id="adminGamesContainer">
+                <!-- Dynamically populated via script.js -->
+            </div>
+
+            <!-- Empty State -->
+            <div class="admin-empty-state" id="adminGamesEmpty" style="display: none;">
+                <div class="empty-icon">🎮</div>
+                <h3>ไม่พบรายการเกม</h3>
+                <p>ไม่มีเกมที่ตรงตามเงื่อนไขการค้นหาหรือสถานะที่เลือก</p>
+            </div>
+        </section>
+
+        <!-- Tab 2: Users Management View -->
+        <section class="admin-tab-pane" id="paneUsers" style="display: none;">
+            <div class="admin-toolbar">
+                <div class="search-input admin-search">
+                    <span>⌕</span>
+                    <input type="text" id="adminUserSearch" placeholder="ค้นหาชื่อผู้ใช้, อีเมล, บทบาท...">
+                </div>
+            </div>
+
+            <div class="admin-table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ผู้ใช้งาน</th>
+                            <th>อีเมล</th>
+                            <th>บทบาท (Role)</th>
+                            <th>จำนวนเกมที่ฝาก</th>
+                            <th>วันที่สมัคร</th>
+                            <th>การกระทำ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminUsersTableBody">
+                        <!-- Dynamically populated via script.js -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="admin-empty-state" id="adminUsersEmpty" style="display: none;">
+                <div class="empty-icon">👥</div>
+                <h3>ไม่พบรายชื่อผู้ใช้</h3>
+                <p>ลองค้นหาด้วยคำค้นอื่น</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Access Denied Modal/Card (if unauthorized) -->
+    <div class="admin-denied-card" id="adminDeniedCard" style="display: none;">
+        <div class="denied-icon">🔒</div>
+        <h2>ปฏิเสธการเข้าถึง (Access Denied)</h2>
+        <p>หน้านี้สงวนไว้สำหรับบัญชีที่มีสิทธิ์ <strong>ผู้ดูแลระบบ (Admin)</strong> เท่านั้น</p>
+        <div class="denied-actions">
+            <a href="login.html" class="btn btn-primary">เข้าสู่ระบบด้วยบัญชี Admin</a>
+            <a href="index.html" class="btn btn-outline">กลับหน้าแรก</a>
+        </div>
+    </div>
+</main>
+
+<!-- Delete Confirmation Modal -->
+<div class="admin-modal-backdrop" id="deleteModal" style="display: none;">
+    <div class="admin-modal">
+        <div class="modal-icon-danger">🗑️</div>
+        <h3>ยืนยันการลบเกม</h3>
+        <p id="deleteModalText">คุณแน่ใจหรือไม่ว่าต้องการลบเกมนี้ออกจากระบบอย่างถาวร?</p>
+        <div class="modal-actions">
+            <button class="btn btn-outline" id="btnCancelDelete">ยกเลิก</button>
+            <button class="btn btn-danger-solid" id="btnConfirmDelete">ลบเกมทันที</button>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-brand">
+        <span class="brand-icon">G</span>
+        <strong>GameSinkid Admin Console</strong>
+    </div>
+    <p>Game Publishing Platform — Administrative Management Panel</p>
+    <span class="copyright">© 2026 GameSinkid. All rights reserved.</span>
+</footer>
+
+<script src="script.js?v=3"></script>
+</body>
+</html>
